@@ -1,0 +1,10 @@
+<div class="band">
+  <%if (page.title=='About') { %>
+      <h1>About</h1>
+  <% } else{ %>
+      <h1>Videos</h1>
+  <% } %>
+  <%- page %>
+</div>
+
+<%- partial('_partial/pagination') %>

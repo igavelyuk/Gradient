@@ -2,28 +2,32 @@
 # The object key is the label and the value is the path.
 menu:
   Home: /
-  🗂️Archives: /archives
-  Hexo: https://hexo.io/
+  Videos: /videos
+  Archives: /archives
+  About: /about
+
 
 # The icons at the bottom of the page.
 # The class value comes from font awesome.
-#  Example: if the html code for the icon is <i class="fas fa-home"></i> the value for class will be fas fa-home. 
+#  Example: if the html code for the icon is <i class="fas fa-home"></i> the value for class will be fas fa-home.
 footer_icons:
-  'Hexo.io':
-    url: 'https://hexo.io/'
-    class: 'fas fa-home'
-  '@hexojs':
-    url: 'https://twitter.com/hexojs'
-    class: 'fab fa-twitter'
-  'Report issue':
-    url: 'https://github.com/RandomAdversary/Gradient/issues'
-    class: 'fas fa-bug'
-
+  'Home':
+    url: 'https://gweb.fun/'
+    class: 'bg-success fas fa-home'
+  'igavelyuk':
+    url: 'https://twitter.com/igavelyuk'
+    class: 'bg-primary fab fa-twitter'
+  'gavel web youtube':
+    url: 'https://www.youtube.com/channel/UCVDWbghAS6ZSj0siBCOPVWg?view_as=subscriber'
+    class: 'bg-danger fa fa-play-circle'
+  'gavel web insta':
+    url: 'https://www.instagram.com/gavelweb/'
+    class: 'bg-warning fa fa-camera'
 # This is reserved for meta tags.
 # List of supported items:
 # 1. Twitter card image. See: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary.html
 # 2. Open graph image. See: http://ogp.me/
-meta: 
+meta:
   twitter:
     featured_image: img/default.jpg
   open_graph: #Facebook
@@ -33,13 +37,13 @@ meta:
 sidebar:
   twitter:
     enabled: true
-    username: 'hexojs'
+    username: 'igavelyuk'
     height: 800
-  tldr: 
-    - block1: 
+  tldr:
+    - block1:
       title: 'TL;DR'
       content: 'Yet another hexo theme.'
-    - block2: 
+    - block2:
       title: 'TL;DR 2'
       content: 'No, not another one :/'
 
