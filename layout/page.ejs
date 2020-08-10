@@ -1,48 +1,140 @@
 <div class="band">
   <%if (page.title=='About') { %>
       <h1>About</h1>
-
-
   <% } else{ %>
-      <h1>Videos</h1>
-      <h2>Latest Uploaded Videos</h2>
-  <script>
-
-      var row =<%-JSON.stringify(data)%>
-      function Request(){
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            document.getElementById("demo").innerHTML = xhttp.responseText;
-          }
-};
-xhttp.open("GET", "filename", true);
-xhttp.send();
+    <style>
+      .you-box {
+        width: 190%!Important;
+        background-color: rgba(100, 100, 100, 0.8);
+        display: grid;
+        grid-template-columns: repeat(3, 5fr);
+        font-size: 25px;
       }
-      console.log(row);
-  </script>
-    <table>
-    <% for(var i=0; i < data.length; i++) { %>
-       <tr>
-         <td><%= data[i].id %></td>
-         <td><%= data[i].name %></td>
-       </tr>
-    <% } %>
-    </table>
-        <div class="container row">
-        <div class="col">
+
+      .articlez, .article0, .article1, .article2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        margin: 0px;
+        border: 5px solid white;
+        width: auto;
+      }
+
+      .articlez {
+        background-color: inherit;
+      }
+
+      .article0 {
+        background-color: #B71C1C;
+      }
+
+      .article1 {
+        background-color: #880E4F;
+      }
+
+      .article2 {
+        background-color: #4A148C;
+      }
+
+      .container {
+        position: relative;
+      }
+
+      h5 {
+        position: relative;
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        text-align: justify;
+        text-justify: inter-character;
+      }
+
+      img {
+        width: 99%;
+        height: 315px;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+
+      iframe {
+        margin: 2px;
+        width: 99%;
+        height: 315px;
+      }
+
+      /* a {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 22px;
+        float: right;
+        font-weight: bolder;
+        text-align: right;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #333333;
+      } */
+
+      .youtube {
+        /* background-color: red; */
+        grid-auto-rows: 1fr;
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+    </style>
+      <div class="you-box">
+        <div id ="article0" class="article0">
 
         </div>
-        <div class="col">
+        <div id ="article1" class="article1" >
 
         </div>
-        <div class="col">
+        <div id ="article2" class="article2">
 
         </div>
       </div>
+
+  <script>
+    sendRequest=(playList, id2Insert)=>{
+    const magikKey="AIzaSyApXFbuT8cQmUFhVQr_V56w7DdaC6r3GGE";
+    const requestUrl = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=";
+    const beforeEnd = "&maxResults=4&key=";
+
+    var request = [];
+    request.push(requestUrl.concat(playList,beforeEnd,magikKey))
+      fetch(request)
+     .then(function(response) {
+     return response.json();
+    })
+     .then(function(result) {
+     var reverseList = result.items.reverse()
+     reverseList.forEach(function (a){
+      var eachVideo = document.getElementById(id2Insert);
+      eachVideo.innerHTML += `
+      <div class="youtube">
+      <h5>${a.snippet.title}</h5>
+
+
+
+      <iframe id="${a.snippet.resourceId.videoId}" width="560" height="315" src="https://www.youtube-nocookie.com/embed/${a.snippet.resourceId.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>`;
+     })
+    })
+  }
+  // <-- %- page % // <img src=${a.snippet.thumbnails.high.url} alt="" width="560" height="315">-->
+
+  sendRequest("PLlpl3XXn_Bin98Q7fNjaTUOYQXhDZBU-i","article2");
+  sendRequest("PLlpl3XXn_BilH0bItpa2zrH4lVCusvbwq","article0");
+  sendRequest("PLlpl3XXn_Bik-5SdpKSyMDUyPKi2iJAda","article1");
+
+  </script>
   <% } %>
-  <%- page %>
+
 </div>
 
 <%- partial('_partial/pagination') %>
